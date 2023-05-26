@@ -130,8 +130,11 @@ func SignalWorkflow(ctx workflow.Context, customer Customer) (string, error) {
 		logger.Info(ColorGreen, "SignalWorkflow: Sleeping for a BillingPeriod (", 
 			workflowCustomer.Subscription.BillingPeriod, ")..", ColorReset)
 
-		//workflow.AwaitWithTimeout(ctx, workflowCustomer.Subscription.BillingPeriod, cancelSelector.HasPending)
-		workflow.Sleep(ctx, workflowCustomer.Subscription.BillingPeriod)
+		// Sleep for time:
+		//workflow.Sleep(ctx, workflowCustomer.Subscription.BillingPeriod)
+
+		// Sleep for time but interrupt if cancel signal comes in:
+		workflow.AwaitWithTimeout(ctx, workflowCustomer.Subscription.BillingPeriod, cancelSelector.HasPending)
 
 		// Check if cancel signal received during period
 		for cancelSelector.HasPending() {
