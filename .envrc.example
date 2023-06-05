@@ -3,7 +3,7 @@
 export TEMPORAL_HOST_URL="myns.abcdf.tmprl.cloud:7233"
 export TEMPORAL_NAMESPACE="myns.abcdf"
 
-# tclient-buildsi client cert
+# tclient-myns client cert
 export TEMPORAL_TLS_CERT="/Users/myuser/.temporal/tclient-myns.pem"
 export TEMPORAL_TLS_KEY="/Users/myuser/.temporal/tclient-myns.key"
 
